@@ -1,5 +1,0 @@
-df = dados.head(60).copy()
-
-df['Data'] = df.index
-
-df['Data'] = df['Data'].apply(mdates.date2num)
