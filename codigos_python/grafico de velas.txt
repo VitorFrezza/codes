@@ -1,0 +1,53 @@
+fig, ax = plt.subplots(figsize=(15, 8))
+
+# Vamos definir a largura dos candles no gráfico
+width = 0.7
+
+for i in range(len(df)):
+    # Determinando a cor do candle
+    # Se o preço de fechamento for maior que o de abertura, o candle é verde (a ação valorizou nesse dia).
+    # Se for menor, o candle é vermelho (a ação desvalorizou).
+    if df['fechamento'].iloc[i] > df['abertura'].iloc[i]:
+        color = 'green'
+    else:
+        color = 'red'
+
+    # Desenhando a linha vertical do candle (mecha)
+    # Essa linha mostra os preços máximo (topo da linha) e mínimo (base da linha) do dia.
+    # Usamos `ax.plot` para desenhar uma linha vertical.
+    # [df['Data'].iloc[i], df['Data'].iloc[i]] define o ponto x da linha (a data), e [df['Mínimo'].iloc[i], df['Máximo'].iloc[i]] define a altura da linha.
+    ax.plot([df['Data'].iloc[i], df['Data'].iloc[i]],
+            [df['minimo'].iloc[i], df['maximo'].iloc[i]],
+            color=color,
+            linewidth=1)
+
+    ax.add_patch(plt.Rectangle((df['Data'].iloc[i] - width/2, min(df['abertura'].iloc[i], df['fechamento'].iloc[i])),
+                               width,
+                               abs(df['fechamento'].iloc[i] - df['abertura'].iloc[i]),
+                               facecolor=color))
+
+df['MA7'] = df['fechamento'].rolling(window=7).mean()
+df['MA14'] = df['fechamento'].rolling(window=14).mean()
+
+# Plotando as médias móveis
+ax.plot(df['Data'], df['MA7'], color='orange', label='Média Móvel 7 Dias')  # Média de 7 dias
+ax.plot(df['Data'], df['MA14'], color='yellow', label='Média Móvel 14 Dias')  # Média de 14 dias
+# Adicionando legendas para as médias móveis
+ax.legend()
+
+# Formatando o eixo x para mostrar as datas
+# Configuramos o formato da data e a rotação para melhor legibilidade
+ax.xaxis_date() #O método xaxis_date() é usado para dizer ao Matplotlib que as datas estão sendo usadas no eixo x
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+plt.xticks(rotation=45)
+
+# Adicionando título e rótulos para os eixos x e y
+plt.title("Gráfico de Candlestick - PETR4.SA com matplotlib")
+plt.xlabel("Data")
+plt.ylabel("Preço")
+
+# Adicionando uma grade para facilitar a visualização dos valores
+plt.grid(True)
+
+# Exibindo o gráfico
+plt.show()
