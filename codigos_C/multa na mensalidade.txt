@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+double multa(double mensalidade, double taxa, double txDia,int dia){
+ 	
+ 	txDia = txDia * dia;
+ 	taxa = taxa + txDia;
+ 	
+ 	return mensalidade * (1+taxa/100);
+
+}
+
+int main(void) {
+	
+	
+	double mensalidade, novaMensalidade, taxa = 10, txDia = 0.1;
+	int dia;
+	
+	
+	
+	printf("o valor da mensalidade eh : \n");
+	scanf("%lf", & mensalidade);
+	
+	printf(" a quantidade de dias em atraso eh: \n");
+	scanf("%d", &dia);
+	
+	
+	novaMensalidade = multa(mensalidade, taxa, txDia, dia);
+	
+	printf("%lf", novaMensalidade);
+	
+	
+
+	return 0;
+}

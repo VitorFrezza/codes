@@ -1,0 +1,39 @@
+
+#include <stdio.h>
+#include <string.h>
+
+#define TAM 100
+
+struct pessoa{
+    
+    int idade;
+    int peso;
+    char nome [TAM];
+};
+
+typedef struct pessoa pessoa;
+
+int main(){
+    
+    // inicializando o programa
+    
+  pessoa p = { 0,0.0, "teste"};
+  
+
+printf("Insira seu nome:\n");
+fgets(p.nome, 100, stdin);
+printf("Insira a sua idade:\n");
+scanf("%d", &p.idade);
+printf(" Insira seu peso:\n");
+scanf("%d", &p.peso);
+
+
+printf("\n Os dados do Usuario sao:\n");
+
+printf("Nome:%s", p.nome);
+printf("Idade:%d anos\n", p.idade);
+printf("Peso:%d kg.\n", p.peso);
+ 
+
+
+}

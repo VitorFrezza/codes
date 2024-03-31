@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+double imposto(double resposta, double ir){
+	return resposta * (1-ir/100);
+}
+
+int main(void) {
+	
+	double kg, dolar, real, ir, resposta;
+	int qtd;
+	
+	
+	qtd = 4500;
+	kg = 4.0;
+	dolar = 3.0;
+	real = 5.0;
+	ir = 15.0;
+	
+	resposta = qtd * kg;
+	resposta = resposta * dolar;
+	resposta = resposta * real;
+	resposta = imposto(resposta, ir);
+	
+	
+	
+	
+	printf("Resposta = R$ %2.lf\n", resposta);
+	
+	
+	return 0;
+}

@@ -1,0 +1,170 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char nome_completo[50];
+    char data_nascimento[15];
+    char insta[50];
+    char facebook[50];
+    char whats[20];
+    char email[50];
+} dados_usuario;
+
+
+
+int main()
+{
+    dados_usuario contatos[100];
+    int op=1, i, j, k, ultimo = 100, id;
+    
+    while(op!=0){
+    printf("--------AGENDA DE CONTATOS--------\n");
+    printf("[1]-Inserir contato.\n");
+    printf("[2]-Alterar contato.\n");
+    printf("[3]-Excluir contato.\n");
+    printf("[4]-Pesquisar contato.\n");
+    printf("[5]-Listar contatos.\n");
+    printf("[0]-Encerrar programa.\n");
+    printf("Escolha uma opção acima:\n ");
+    scanf("%i", &op);
+    fflush(stdin);
+    getchar();
+    switch(op){
+        case 1:
+            printf("~~~~~~~~Inserir contato~~~~~~~~\n");
+            printf("Nome Completo: ");
+            fflush(stdin);
+            fgets(contatos[i].nome_completo, 50, stdin);
+            contatos[i].nome_completo[strlen(contatos[i].nome_completo) - 1] = '\0';
+            printf("Data de Nascimento: ");
+            fflush(stdin);
+            fgets(contatos[i].data_nascimento, 15, stdin);
+            contatos[i].data_nascimento[strlen(contatos[i].data_nascimento) - 1] = '\0';
+            printf("Instagram: @");
+            fflush(stdin);
+            fgets(contatos[i].insta, 50, stdin);
+            contatos[i].insta[strlen(contatos[i].insta) - 1] = '\0';
+            printf("Facebook: ");
+            fflush(stdin);
+            fgets(contatos[i].facebook, 50, stdin);
+            contatos[i].facebook[strlen(contatos[i].facebook) - 1] = '\0';
+            printf("WhatsApp: ");
+            fflush(stdin);
+            fgets(contatos[i].whats, 20, stdin);
+            contatos[i].whats[strlen(contatos[i].whats) - 1] = '\0';
+            printf("Email: ");
+            fflush(stdin);
+            fgets(contatos[i].email, 50, stdin);
+            contatos[i].email[strlen(contatos[i].email) - 1] = '\0';
+            i++;
+            printf("Contato adicionado com Sucesso!\n");
+            break;
+        case 2:
+            printf("~~~~~~~~Alterar contato~~~~~~~~\n");
+            printf("Qual ID do contato que deseja alterar? ");
+            scanf("%i", &id);
+            fflush(stdin);
+            getchar();
+            if(id>=0 && id<=100){
+                printf("Nome Completo: ");
+            fflush(stdin);
+            fgets(contatos[id].nome_completo, 50, stdin);
+            contatos[id].nome_completo[strlen(contatos[id].nome_completo) - 1] = '\0';
+            printf("Data de Nascimento: ");
+            fflush(stdin);
+            fgets(contatos[id].data_nascimento, 15, stdin);
+            contatos[id].data_nascimento[strlen(contatos[id].data_nascimento) - 1] = '\0';
+            printf("Instagram: @");
+            fflush(stdin);
+            fgets(contatos[id].insta, 50, stdin);
+            contatos[id].insta[strlen(contatos[id].insta) - 1] = '\0';
+            printf("Facebook: ");
+            fflush(stdin);
+            fgets(contatos[id].facebook, 50, stdin);
+            contatos[id].facebook[strlen(contatos[id].facebook) - 1] = '\0';
+            printf("WhatsApp: ");
+            fflush(stdin);
+            fgets(contatos[id].whats, 20, stdin);
+            contatos[id].whats[strlen(contatos[id].whats) - 1] = '\0';
+            printf("Email: ");
+            fflush(stdin);
+            fgets(contatos[id].email, 50, stdin);
+            contatos[id].email[strlen(contatos[id].email) - 1] = '\0';
+            printf("Contato Alterado com Sucesso!");
+            }
+            else{
+                printf("ID invalido, tente novamente...");
+            }
+            break;
+        case 3:
+            printf("~~~~~~~~Excluir contato~~~~~~~~\n");
+             printf("Qual ID do contato que deseja EXCLUIR? ");
+            scanf("%i", &id);
+            fflush(stdin);
+            getchar();
+            if(id>=0 && id<=100){
+                for(j = id; j < ultimo; j++){
+                 contatos[j] = contatos[j+1];
+                 ultimo--;
+                 
+                }
+                 printf("Contato Excluido com Sucesso!\n");
+            }
+            else{
+               printf("ID invalido, tente novamente...");
+            }
+            break;
+        case 4:
+            printf("~~~~~~~~Pesquisar contato~~~~~~~~\n");
+            printf("Digite o ID do Contato: ");
+            scanf("%i", &id);
+            if(id>=0 && id<=100){
+        printf("ID...........................: %i \n", id);
+        printf("Nome.........................: %s \n", contatos[id].nome_completo);
+        printf("Data de Nascimento...........: %s \n", contatos[id].data_nascimento);
+        printf("Instagram....................: @%s \n", contatos[id].insta);
+        printf("Facebook.....................: %s \n", contatos[id].facebook);
+        printf("WhatsApp.....................: %s \n", contatos[id].whats);
+        printf("Email........................: %s \n", contatos[id].email);
+        printf("\n \n");
+            }
+        else{
+        printf("Opção invalida, tente novamente...\n");
+    }
+            break;
+        case 5:
+            printf("~~~~~~~~Listar contatos~~~~~~~~\n");
+            printf("Listar até qual ID? ");
+            scanf("%i", &id);
+            fflush(stdin);
+            if(id>=0 && id<=100){
+             for(k = 0; k <= id; k++){
+        printf("ID...........................: %i \n", k);
+        printf("Nome.........................: %s \n", contatos[k].nome_completo);
+        printf("Data de Nascimento...........: %s \n", contatos[k].data_nascimento);
+        printf("Instagram....................: @%s \n", contatos[k].insta);
+        printf("Facebook.....................: %s \n", contatos[k].facebook);
+        printf("WhatsApp.....................: %s \n", contatos[k].whats);
+        printf("Email........................: %s \n", contatos[k].email);
+        printf("\n \n");
+    }
+    }
+    else{
+        printf("Opção invalida, tente novamente...\n");
+    }
+            break;
+        case 0:
+            break;
+        default:
+            printf("Opção invalida!\n");
+    }
+}
+
+printf("Programa Encerrado com sucesso!");
+
+    return 0;
+}
+
+
+
+

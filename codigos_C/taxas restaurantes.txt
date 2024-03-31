@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+double taxas( double valorConta, double taxa){
+	
+	return valorConta * taxa/100;
+	
+}
+
+
+int main (void){
+	
+	double valorConta = 219, taxaCouvert = 2.0, taxaGorjeta = 10.0, vlrCouvert, vlrGorjeta, vlrTotal;
+		
+	
+	
+	vlrGorjeta = taxas(valorConta,taxaGorjeta);
+	
+	vlrCouvert = taxas(valorConta, taxaCouvert);
+	
+	vlrTotal = valorConta + vlrCouvert + vlrGorjeta;
+	
+	
+	
+	printf("o valor do couvert eh: %lf \n", vlrCouvert);
+	printf("o valor do couvert eh: %lf \n", vlrGorjeta);
+	printf("o valor do couvert eh: %lf \n", vlrTotal);
+	
+	return 0 ; 
+	
+}

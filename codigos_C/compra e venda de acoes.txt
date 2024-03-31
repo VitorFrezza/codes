@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include <math.h>
+
+
+// 300 acoes compradas 24,54 
+// comprei mais 100 acoes a 30,51 
+// [300 * 24,54 + 100 * 30,51]/400 (preço medio das 400 acoes)
+// lucro bruto [31 reais - valor preco medio] * 400 
+// lucro liquido [valor bruto * (1-15/100)] obs: 15 referente a taxa de I.R
+// valor do imposto de renda [ lucro bruto *15/100]
+
+
+double atualizaPrecoMedio(int carteira, double precoMedioComp,int acoesComp, double precoCompra){
+	return (carteira*precoMedioComp + acoesComp*precoCompra)/(carteira+acoesComp);
+}
+int atualizaQuantidade(int carteira , int acoesComp){
+	return carteira + acoesComp;
+}
+double calculaLucroB(int acoesVend, double precoVenda, double precoMedioComp){
+	return (precoVenda-precoMedioComp)*acoesVend;
+}
+double calculaLucroL(double lucroB, double taxa){
+	return lucroB * (1-taxa/100);
+}
+double calculaIR(double lucroB, double taxa){
+	return lucroB * (taxa/100);
+}
+
+int main(void){
+	
+	double precoMedioComp, precoCompra, precoVenda, lucroB, ir, taxa, lucroL;
+	int carteira, acoesComp, acoesVend;
+	
+	carteira = 300;
+	precoMedioComp = 24.54;
+	acoesComp = 100;
+	taxa = 15.00;
+	precoCompra = 30.51;
+	precoVenda = 32.50;
+	acoesVend = 400;
+	
+
+	precoMedioComp = atualizaPrecoMedio(carteira,precoMedioComp,acoesComp,precoCompra);
+	
+	carteira = atualizaQuantidade(carteira, acoesComp);
+	
+	lucroB = calculaLucroB(acoesVend,precoVenda,precoMedioComp);
+	
+	lucroL = calculaLucroL(lucroB, taxa);
+	
+	ir = calculaIR(lucroB, taxa);
+	
+	carteira = atualizaQuantidade (carteira, -acoesVend);
+	
+	
+	
+printf("Acoes em carteira = %d \n", carteira);
+printf("Preco medio de compra  = R$%8.2lf  \n",precoMedioComp );
+printf("Lucro Bruto  = R$%8.2lf  \n",lucroB);
+printf("Lucro Liquido  = R$%8.2lf  \n",lucroL );
+printf("I.R pago  = R$%8.2lf  \n",ir );
+	
+	
+	return 0;
+}
